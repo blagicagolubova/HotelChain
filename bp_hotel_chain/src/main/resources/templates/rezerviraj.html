@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grading form</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Hotel reservations</a>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/hotels">Hotels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hotels/grades-and-comments">Grades & Comments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hotels/reservations">Hotel reservations</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <form action="/hotels/makereservation" method="POST">
+                <div class="form-group">
+                    <label>Hotel</label>
+                    <div th:text="${hotel.getHotelIme()}"></div>
+                </div>
+                <div class="form-group">
+                    <label>Hotel Room</label>
+                    <div th:text="${soba.getSoba_tip()}"></div>
+                </div>
+                <div>
+                    <label>Room price for 1 night:</label>
+                    <div th:text="${soba.getSoba_cena()}"></div>
+                </div>
+
+                <h5>Enter your personal data:</h5>
+                <div class="form-group">
+                    <label for="soba_id">Room number</label>
+                    <input type="number"
+                           class="form-control"
+                           id="soba_id"
+                           name="soba_id"
+                           th:value="${soba.getSoba_id()}"
+                           placeholder="Room number">
+                </div>
+                <div class="form-group">
+                    <label for="gostin_embg">EMBG</label>
+                    <input type="text"
+                           class="form-control"
+                           id="gostin_embg"
+                           name="gostin_embg"
+                           placeholder="Embg">
+                </div>
+                <div class="form-group">
+                    <label for="gostin_ime">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="gostin_ime"
+                           name="gostin_ime"
+                           placeholder="gostin_ime">
+                </div>
+                <div class="form-group">
+                    <label for="gostin_prezime">Surname</label>
+                    <input type="text"
+                           class="form-control"
+                           id="gostin_prezime"
+                           name="gostin_prezime"
+                           placeholder="gostin_prezime">
+                </div>
+                <div class="form-group">
+                    <label for="gostin_email">Email</label>
+                    <input type="text"
+                           class="form-control"
+                           id="gostin_email"
+                           name="gostin_email"
+                           placeholder="gostin_email">
+                </div>
+                <div class="form-group">
+                    <label for="check_in">Check-in date</label>
+                    <input type="date"
+                           class="form-control"
+                           id="check_in"
+                           name="check_in"
+                           placeholder="check-in">
+                </div>
+                <div class="form-group">
+                    <label for="check_out">Check-out date</label>
+                    <input type="date"
+                           class="form-control"
+                           id="check_out"
+                           name="check_out"
+                           placeholder="check-out">
+                </div>
+                <select name="usluga_ime" class="form-control">
+                    <option th:value="${ai}"
+                            th:text="${ai}">
+                    </option>
+                    <option th:value="${bi}"
+                            th:text="${bi}">
+                    </option>
+                    <option th:value="${na}"
+                            th:text="${na}">
+                    </option>
+                </select>
+
+                <a type="button" class="btn btn-primary" href="/hotels">Back</a>
+                <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

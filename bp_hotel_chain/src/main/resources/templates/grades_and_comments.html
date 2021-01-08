@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades and comments</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<div class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Hotel reservations</a>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/hotels">Hotels</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hotels/grades-and-comments">Grades & Comments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/hotels/reservations">Hotel reservations</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div th:if="${hasError}" style="color: red; font-size: large">
+    <h5 class="text-center text-danger" th:text="${error}"></h5>
+</div>
+<div class="container mb-4">
+    <h5> If you have visited any of our hotels, please grade it & leave a comment!</h5>
+    <p><a class="btn btn-primary btn-sm" href="/hotels/grading">Grade Hotel</a> </p>
+</div>
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12" th:if="${ocenki_i_komentari.size() > 0}">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name and Surname</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Comment</th>
+                        <th scope="col">Hotel</th>
+                        <th scope="col">City</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="oceni : ${ocenki_i_komentari}" class="product">
+                        <td th:text="${oceni.getIME_I_PREZIME()}"></td>
+                        <td th:text="${oceni.getOCENKA()}"></td>
+                        <td th:text="${oceni.getKOMENTAR()}"></td>
+                        <td th:text="${oceni.getIME_NA_HOTEL()}"></td>
+                        <td th:text="${oceni.getIME_GRAD()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
